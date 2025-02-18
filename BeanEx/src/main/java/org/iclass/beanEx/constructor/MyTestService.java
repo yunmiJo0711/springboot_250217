@@ -14,7 +14,7 @@ public class MyTestService { // (2)Service 는 MVC 모델2 에서 비지니스�
 	// 생성자 실행 시 자동으로 MyTestDao 타입 bean 을 찾아서 초기화 실행 
 	public MyTestService(MyTestDao dao) {
 		this.dao = dao;
-		log.info("■■■ 의존성 빈 dao 확인 : {} ■■■", this.dao);
+		log.info("●●● 의존성 빈 dao 확인 : {} ●●●", this.dao);
 	}
 	
 	public void logicTest() {

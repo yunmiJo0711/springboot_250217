@@ -16,7 +16,7 @@ public class MyTestController { // (1)Controller 는 MVC 모델2 에서 사용�
 	}
 	
 	public void test() {
-		log.info("사용자 요청을 처리합니다.");
+		log.info("★★★사용자 요청을 처리합니다.★★★");
 		service.logicTest();
 	}
 
