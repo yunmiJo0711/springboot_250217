@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/css/test.css">
+<link rel="stylesheet" type="text/css" href="/css/test.css"/>
 </head>
 <body>
 	<!-- URL 설계 -->
@@ -15,5 +15,23 @@
 	</ul>
 	<hr/>
 	<h2>INDEX</h2>
+	<h2>Get 요청 파라미터 테스트</h2>
+	<ul>
+		<li><a href="list?name=트와이스&age=25">파라미터 연습1</a></li>
+		<li><a href="listA?name=트와이스&age=25&address=서울&gender=male">파라미터 연습2</a></li>
+		<li><a href="listB?name=뉴진스&age=23&address=LA&gender=female">파라미터 연습3</a></li>
+		<!-- 파라미터가 없는 경우 처리 (name 파라미터 없음) -->
+		<li><a href="listA?age=23&address=서울&gender=male">파라미터 연습4</a></li>
+		<!-- 파라미터가 없는 경우 처리 (age 파라미터 없음) : int형은 컨트롤러에서 추가적인 설정 필요 -->
+		<li><a href="listA?name=아이브&address=서울&gender=male">파라미터 연습5</a></li>
+		<!-- 파라미터가 없는 경우 처리 (age 파라미터 없음) : dto 타입으로 저장할 때는 정상 실팽 -->
+		<li><a href="listB?name=에스파&address=LA&gender=female">파라미터 연습6</a></li>
+		<!-- 파라미터 값이 캐스팅(자료형식을 바꿔줄 때)오류 발생하는 처리 : 오류 페이지 만들면 됌.(앞으로 해야할 일)-->
+		<li><a href="listB?name=에스파&age=ABC&address=LA&gender=female">파라미터 연습7</a></li>
+	</ul>
+	<h2>View 에 데이터를 전달하기 : 애트리뷰트</h2>
+	<ul>
+		<li><a href="/community/list">커뮤티티 글목록</a></li>
+	</ul>
 </body>
 </html>

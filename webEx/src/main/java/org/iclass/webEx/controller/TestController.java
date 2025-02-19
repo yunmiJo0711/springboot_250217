@@ -24,17 +24,5 @@ public class TestController {
 		return "login";	// login.html 파일 지정
 	}
 	
-	@GetMapping("write")
-	public String write() {
-		return "write";	// write.html 파일 지정
-	}
 	
-	@PostMapping("save")
-	public String save(String title, String content) {
-		log.info("post 요청을 처리하고 context path(/) 로 리다이렉트합니다."); // 리다이렉트 : 홈으로 돌아간다
-		log.info("title : {}", title);  // requst.get파라미터 
-		log.info("content : {}", content);
-		return "redirect:login";	// -> 이러면 LOGIN 화면으로 감. 형식은 "redirect:URL"
-	}
-
 }
