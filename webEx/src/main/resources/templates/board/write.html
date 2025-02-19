@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>애트리뷰트 연습</title>
+</head>
+<body>
+	<h2>실행 경로 : /board/write</h2>
+	<!-- action="/board/write" 현재 html 파일이 board 폴더 안에 있으므로 
+		write 만 작성해도 정상실행 -->
+	<form action="write" method="post">
+		<input type="text" name="code" th:value="${code}">  <!-- input 요소의 값 출력. 서버 사이드에서 동적 웹페이지를 생성하기 위해 템플릿 엔진 th: 사용. -->
+		<input type="text" name="title">
+		<input type="text" name="content">
+		<button>제출</button>
+	</form>
+</body>
+</html>
