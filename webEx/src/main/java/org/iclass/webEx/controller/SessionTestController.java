@@ -31,7 +31,7 @@ public class SessionTestController {
 		return "session";
 	}
 	
-	@GetMapping("logout")		// 방법 1
+	@GetMapping("logout")		// 방법 1 : 로그인 (사용자인증할 때) 사용한다. 
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();

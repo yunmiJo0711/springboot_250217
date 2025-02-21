@@ -28,7 +28,7 @@ public class SpringSessionTestController {
 		return "session";
 	}
 	
-	@PostMapping("logout")		// 방법 2
+	@PostMapping("logout")		// 방법 2 : 여러 단계로 form 데이터 입력 받을 때 사용. 예시: (카드발급 받을 때)인증하고 넘어가고 또 인증하고 이런 데이터가 쌓이는 것
 	public String logout(SessionStatus sessionStatus) {
 		// model 애트리뷰트 중에서 session  스콥에 저장된 것들을 모두 삭제
 		sessionStatus.setComplete();
