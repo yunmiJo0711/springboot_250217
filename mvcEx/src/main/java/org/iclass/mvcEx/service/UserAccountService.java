@@ -26,4 +26,9 @@ public class UserAccountService {
 	public int join(UserAccount dto) {
 		return mapper.insert(dto);
 	}
+
+	public UserAccount join(String userid, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

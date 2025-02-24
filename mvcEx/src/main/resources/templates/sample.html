@@ -10,6 +10,12 @@
 <body>
 	<header layout:fragment="main">
 	<h2>회사소개 and Sample</h2>
+	<h3>다운로드 테스트</h3>
+	<ul th:each="file : ${filenames}">
+		<li><a th:href="|@{download?filename=}${file}|">
+				다운로드 : <span th:text="${file}"></span></a>
+		</li>
+	</ul>
 	</header>
 </body>
 </html>

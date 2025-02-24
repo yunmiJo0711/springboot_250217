@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>title</title>
+</head>
+<body>
+	<h2>파일업로드 데모2 - 여러개 파일 하나씩 업로드</h2>
+	<hr/>
+	<form action="/galleries" method="post" enctype="multipart/form-data">
+		<input type="text" name="title"><br/> 
+		<!-- 파일 선택 다이얼로그에서 파일형식 필터링 -->
+		<input type="file" accept="image/*" name="files"><br/>
+		<input type="file" accept="image/*" name="files"><br/>
+		<input type="file" accept="image/*" name="files"><br/>
+		<input type="text" name="writer" value="iclass">
+		<button type="submit">전송</button>
+	</form>
+	<hr/>
+	<h2>Gallery List</h2>
+	<p>Gallery 테이블 조회 목록(이미지 포함)</p>
+	<!-- th:each 2개에서 각각 status 와 i 변수는 for 반복에 대한 상태 (상태변수는 개발자가 지정)
+		 상태 변수 속성 index 는 0 부터, count 는 1 부터 시작. 
+	-->
+	<!-- th:each 는 주로 HTML 에서 리스트나 컬렉션을 순회할 때 사용. 
+		 List, Set, Map 등을 템플릿에서 반복적으로 출력할 수 있게 해줍니다. -->
+	<div th:each="dto,status:${list}">
+        <p>([[${status.count} ]])[[${dto.title }]]</p>
+        <ul style="display: flex;flex-direction: row;margin-bottom:30px;">
+            <th:block th:each="pic,i:${#strings.setSplit(dto.fileNames,',')}">
+        <!--  #strings 는 타임리프 문자열 유틸객체. 문자열을 , 기호로 분리해서 배열로 변환
+              pic 는 배열요소를 1개씩 순서대로 저장. i는 foreach의 상태변수
+        -->
+        <!-- th:src 는 이미지의 소스경로를 동적으로 설정할 수 있습니다.
+        	 th:alt 는 이미지가 로드되지 않을 때 대신 표시될 대체 텍스트를 동적으롯 설정합니다. -->
+                <li style="width:200px;height: 200px;">
+                    <img th:src="|@{/upload}/${pic}|"  
+                         th:alt="${dto.title}"
+                         width="100%" height="100%" style="object-fit:cover"><br>
+                    <span style="font-size: 0.7em">[[${pic}]]([[${i.index}]])</span>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</body>
+</html>
