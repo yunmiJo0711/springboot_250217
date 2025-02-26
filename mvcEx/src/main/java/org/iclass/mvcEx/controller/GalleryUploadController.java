@@ -74,19 +74,10 @@ public class GalleryUploadController {
 //		list.add(new Gallery("거실", "iclass", "거실1.jpg,거실2.jpg"));
 //		list.add(new Gallery("키친", "iclass", "키친1.jpg,키친2.jpg,키친3.jpg"));
 		// sevice 에서 조회한 결과를 리턴
-		
-		List<String> list = List.of("가나다.pdf","라마바.pdf","abcd.pdf");
-		String filenamesString = String.join(",", list);
-		Gallery gallery = Gallery.builder()
-				.title("갤러리 제목")
-				.writer("작성자")
-				.fileNames(filenamesString)
-				.build();
-		
-		model.addAttribute("gallery", gallery);
-		
-		return "galleries";   // galleries.html
-	}
+	
+	        model.addAttribute("list", service.list());
+	        return "galleries";
+	    }
 	
 	// 여러개 업로드 uploadMany
 	@PostMapping("galleries")

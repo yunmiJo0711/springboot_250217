@@ -17,17 +17,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class GalleryUploadService {
-	//상수
-	private final static String UPLOAD_PATH = "c:\\upload";
-	
 	// db mapper 의존관계 필요함.
 	private GalleryMapper mapper;      // GalleryMapper 타입 객체는 자동 주입
 	
+	//상수
+	private final static String UPLOAD_PATH = "c:\\upload";
+
+	
 	public List<Gallery> list(){
+		
 		return mapper.selectAll();
 	}
 	
-	// 1개의 파일을 업로드 하는 메소드
+	
+	// 1개의 파일을 업로드 하는 메소드 : 첫번째 테스트용(db 저장안됨)
 	public void uploadOne(Gallery dto) {
 		// 서버가 dto 중에 업로드파일(file 변수)을 지정된 폴더에 저장
 		MultipartFile file = dto.getFile();
@@ -49,12 +52,11 @@ public class GalleryUploadService {
 		}
 	}
 
-	
-	// 여러개의 파일을 업로드 하는 메소드. 향상 for문 사용
-	public void uploadMany(Gallery dto) {
+	public int uploadMany(Gallery dto) {
 		// dto 중에서 List 타입으로 업로드 파일 가져오기 : uploadOne 을 list 크기만큼 반복
 		List<MultipartFile> list = dto.getFiles();
-		List<String> filenames = new ArrayList<>();
+		// db 관련 코드 추가 : 여러개 파일 업로드시 파일명을 담을 리스트
+		List<String> filenames = new ArrayList<>(); 
 		for (MultipartFile file : list) {
 //			MultipartFile file = dto.getFile();
 			try {
@@ -68,14 +70,17 @@ public class GalleryUploadService {
 									+ file.getOriginalFilename());
 					// 위의 File 객체를 실제로 저장하기
 					file.transferTo(uploadFile);
+					// 파일명 목록에 추가
 					filenames.add(file.getOriginalFilename());
 				}
 			}catch (IOException e) {
 				log.debug("파일 업로드 예외 : {}", e.getMessage());
 			}
-			
-			
-		}
+		}// for end
 		
+	// 테이블에 insert 하기 : filenames 변수는 List. 하나의 String으로 만들기
+			dto.setFileNames(String.join(",",filenames));
+			mapper.insert(dto);
+		return dto.getSeq();
 	}
 }
