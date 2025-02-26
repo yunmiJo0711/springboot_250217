@@ -11,3 +11,5 @@ public class BoardApplication {
 	}
 
 }
+
+//localhost:8086/community/list
