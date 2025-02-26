@@ -31,6 +31,10 @@ public class Gallery {
 		this.writer=writer;
 		this.fileNames=fileNames;
 	}
-	
+
+	public int getSeq() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
