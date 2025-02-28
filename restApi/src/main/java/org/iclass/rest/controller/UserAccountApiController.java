@@ -24,7 +24,8 @@ public class UserAccountApiController {
 	@GetMapping("/account/{userid}")
 	public ResponseEntity<UserAccount> getOne(@PathVariable String userid){
 		UserAccount account = service.userInfo(userid);
-		return ResponseEntity.ok().body(account);
+		return ResponseEntity.ok().body(account);  
+		// body(account) 가 보내고 싶은 본문이다. account 를 json 문자열로 변환하여 전송
 	}
 	
 	// 사용자 계정 등록하기 - insert
